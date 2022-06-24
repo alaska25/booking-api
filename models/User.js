@@ -21,7 +21,7 @@ Create the User model that will be used in creating the user records and storing
 */
 
 const mongoose = require("mongoose");
-const courseSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
     firstName:{
         type: String,
         required: [true, "firstName is required"]
@@ -39,33 +39,30 @@ const courseSchema = new mongoose.Schema({
         required: [true, "password is required"]
     },
      isAdmin:{
-        type: String,
+        type: Boolean,
         required: [false]
     },
-    mobileNumber:{
-        type: Boolean,
-        required: [true, "mobileNumber is required"]
+    mobileNo:{
+        type: String,
+        required: [true, "mobileNo is required"]
     },
-    isActive:{
-        type: Boolean,
-        default: true
-    },
-    createdOn:{
-        type: Date,
-        default: new Date()
-    },
-    enrollees: [
+    
+    enrollments: [
     {
-        userId: {
+        courseId: {
             type: String,
-            required: [true, "UserId is Required"]
+            required: [true, "CourseId is Required"]
         },
         enrolledOn:{
             type: Date,
             default: new Date()
+        },
+        Status:{
+            type: String,
+            default: "enrolled"
         }
     }
     ]
 })
 
-module.exports = mongoose.model("Course", courseSchema)
+module.exports = mongoose.model("User", userSchema)
