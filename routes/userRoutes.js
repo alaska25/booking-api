@@ -3,6 +3,8 @@ const router = express.Router();
 
 const userControllers = require("../controllers/userControllers")
 
+const auth = require("../auth");
+
 
 
 
@@ -35,9 +37,21 @@ Initialize a local git repository, add the remote link and push to git with the 
 Add the link in Boodle
 */
 
-
+/*
 router.post("/details", (req, res)=>{
 	userControllers.getProfile(req.body.id).then(resultFromController => res.send(resultFromController))
+})
+
+*/
+
+
+// Route for the retrieving the current user's details.
+router.get("/details", auth.verify, (req, res)=>{
+	const userData = auth.decode(req.headers.authorization); // cointains the token
+	console.log(userData);
+
+	//Provides the user's ID for the getProfile controller method
+ 	userControllers.getProfile({userId: userData.id}).then(resultFromController=>res.send(resultFromController))
 })
 
 module.exports = router;

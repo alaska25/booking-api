@@ -90,14 +90,23 @@ module.exports.loginUser = (reqBody) => {
 
 ////////// ACTIVITY //////////////
 
-module.exports.getProfile = (userId) =>{
-	return User.findById(userId).then(result => {
-		if (result == null){
-			return false;
-		}
-		else {
-			result.password = "";
-			return result;
-		}
+// module.exports.getProfile = (userId) =>{
+// 	return User.findById(userId).then(result => {
+// 		if (result == null){
+// 			return false;
+// 		}
+// 		else {
+// 			result.password = "";
+// 			return result;
+// 		}
+// 	})
+// }
+
+// Instructor solution
+module.exports.getProfile = (data) =>{
+	return User.findById(data.userId).then(result => {
+		result.password = "";
+
+		return result;
 	})
 }

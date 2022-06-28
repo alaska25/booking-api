@@ -3,6 +3,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const userRoutes = require("./routes/userRoutes");
+const courseRoutes = require("./routes/courseRoutes");
 
 
 
@@ -31,6 +32,8 @@ app.use(express.urlencoded({extended:true}));
 // Listening to port
 // This syntax will allow flexibility when using the application locally or as hosted application (online).
 app.use("/users", userRoutes);
+app.use("/courses", courseRoutes);
+
 app.listen(process.env.PORT || port, () =>{
 	console.log(`API is now online on port ${process.env.PORT || port}`);
 })
