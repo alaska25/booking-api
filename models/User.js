@@ -49,24 +49,7 @@ const userSchema = new mongoose.Schema({
     createdOn:{
         type: Date,
         default: new Date()
-    },
-    
-    enrollments: [
-    {
-        courseId: {
-            type: String,
-            required: [true, "CourseId is Required"]
-        },
-        enrolledOn:{
-            type: Date,
-            default: new Date()
-        },
-        Status:{
-            type: String,
-            default: "enrolled"
-        }
-        }
-    ]
+    }
 })
 
 module.exports = mongoose.model("User", userSchema)
